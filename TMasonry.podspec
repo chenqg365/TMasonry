@@ -1,42 +1,37 @@
-#
-# Be sure to run `pod lib lint TMasonry.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
-  s.name             = 'TMasonry'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of TMasonry.'
+  s.name     = 'TMasonry'
+  s.version  = '1.1'
+  s.license  = 'MIT'
+  s.summary  = 'Harness the power of Auto Layout NSLayoutConstraints with a simplified, chainable and expressive syntax.'
+  s.homepage = 'https://github.com/chenqg365/TMasonry'
+  s.author  = { 'chenqg' => 'chenqg3721@163.com' }
+  s.social_media_url = "http://twitter.com/cloudkite"
+  s.source = { :git => 'https://github.com/chenqg365/TMasonry.git', :tag => s.version.to_s }
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+  s.description = %{
+    Masonry is a light-weight layout framework which wraps AutoLayout with a nicer syntax.
+	Masonry has its own layout DSL which provides a chainable way of describing your
+	NSLayoutConstraints which results in layout code which is more concise and readable.
+    Masonry supports iOS and Mac OSX.
+  }
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  pch_AF = <<-EOS
+    #ifndef TARGET_OS_IOS
+        #define TARGET_OS_IOS TARGET_OS_IPHONE
+    #endif
+    #ifndef TARGET_OS_TV
+        #define TARGET_OS_TV 0
+    #endif
+  EOS
 
-  s.homepage         = 'https://github.com/chenqg365/TMasonry'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'chenqg365' => 'chenqg3721@163.com' }
-  s.source           = { :git => 'https://github.com/chenqg365/TMasonry.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source_files = 'Masonry/*.{h,m}'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.frameworks = 'Foundation', 'UIKit'
+  s.tvos.frameworks = 'Foundation', 'UIKit'
+  s.osx.frameworks = 'Foundation', 'AppKit'
 
-  s.source_files = 'TMasonry/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'TMasonry' => ['TMasonry/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.ios.deployment_target = '6.0' # minimum SDK with autolayout
+  s.osx.deployment_target = '10.7' # minimum SDK with autolayout
+  s.tvos.deployment_target = '9.0' # minimum SDK with autolayout
+  s.requires_arc = true
 end
